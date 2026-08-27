@@ -12,6 +12,19 @@
     --outline-color: #e1e2e4;
     --text-primary: #191c1e;
     --text-muted: #434654;
+    --nav-bg: rgba(248, 249, 251, 0.9);
+    --nav-scrolled: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark {
+    --surface: #0b0f19;
+    --surface-card: #111827;
+    --secondary-slate: #9ca3af;
+    --outline-color: #1f2937;
+    --text-primary: #f3f4f6;
+    --text-muted: #9ca3af;
+    --nav-bg: rgba(11, 15, 25, 0.9);
+    --nav-scrolled: rgba(17, 24, 39, 0.95);
   }
 
   body {
@@ -20,6 +33,7 @@
     color: var(--text-primary);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -34,6 +48,12 @@
   background-image: 
     linear-gradient(to right, rgba(0, 82, 204, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 82, 204, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
 }
 
 /* Pulse animation for status indicator dots */
