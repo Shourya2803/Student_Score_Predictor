@@ -1,6 +1,8 @@
 import { StudentMetrics, PredictionResponse } from "@/types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE_URL = 
+  process.env.NEXT_PUBLIC_API_URL || 
+  "https://student-score-backend.onrender.com";
 
 /**
  * Sends student metrics to the FastAPI backend model endpoint.
