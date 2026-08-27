@@ -26,28 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} h-full`}>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (saved === 'dark' || (!saved && prefersDark)) {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                    document.documentElement.removeAttribute('data-theme');
-                  }
-                } catch (e) {}
-              })();
-            `,
-          }}
-        />
-      </head>
-      <body className="font-sans min-h-full flex flex-col antialiased bg-[#f8f9fb] dark:bg-[#05070a] text-[#191c1e] dark:text-gray-100 selection:bg-[#0052cc] selection:text-white transition-colors duration-300">
+      <body className="font-sans min-h-full flex flex-col antialiased bg-[#f8f9fb] text-[#191c1e] selection:bg-[#0052cc] selection:text-white">
         {children}
       </body>
     </html>

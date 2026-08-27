@@ -4,28 +4,20 @@
   :root {
     --font-inter: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --primary: #0052cc;
+    --primary-hover: #0040a2;
     --surface: #f8f9fb;
     --surface-card: #ffffff;
+    --secondary-slate: #4e6072;
+    --outline-color: #e1e2e4;
     --text-primary: #191c1e;
     --text-muted: #434654;
-    --border-color: #e1e2e4;
-  }
-
-  .dark, [data-theme="dark"] {
-    --surface: #05070a;
-    --surface-card: #0d111a;
-    --text-primary: #f3f4f6;
-    --text-muted: #9ca3af;
-    --border-color: #1f2937;
+    --nav-bg: rgba(248, 249, 251, 0.9);
+    --nav-scrolled: rgba(255, 255, 255, 0.95);
   }
 
   html {
-    color-scheme: light dark;
-  }
-
-  html.dark, html[data-theme="dark"] {
-    color-scheme: dark;
-    background-color: #05070a !important;
+    color-scheme: light;
   }
 
   body {
@@ -34,24 +26,7 @@
     background-color: var(--surface);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.3s ease, color 0.3s ease;
   }
-}
-
-/* Fail-safe Dark Theme Overrides */
-html.dark body, html[data-theme="dark"] body,
-html.dark main, html[data-theme="dark"] main {
-  background-color: #05070a !important;
-  color: #f3f4f6 !important;
-}
-
-html.dark section, html[data-theme="dark"] section {
-  border-color: #1f2937 !important;
-}
-
-html.dark header, html[data-theme="dark"] header {
-  background-color: rgba(5, 7, 10, 0.95) !important;
-  border-color: #1f2937 !important;
 }
 
 /* Monospace font utility */
@@ -65,12 +40,6 @@ html.dark header, html[data-theme="dark"] header {
   background-image: 
     linear-gradient(to right, rgba(0, 82, 204, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 82, 204, 0.05) 1px, transparent 1px);
-}
-
-html.dark .bg-tech-grid, html[data-theme="dark"] .bg-tech-grid {
-  background-image: 
-    linear-gradient(to right, rgba(59, 130, 246, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
 }
 
 /* Pulse animation for status indicator dots */
