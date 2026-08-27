@@ -23,21 +23,32 @@ except ImportError:
 
 # Path resolution for trained ML model (supports multiple deployment layouts)
 BASE_DIR = backend_dir.parent
+cwd = Path.cwd()
+
 MODEL_CANDIDATES = [
     Path(os.getenv("MODEL_PATH", "")),
-    BASE_DIR / "ml" / "models" / "student_score_model.pkl",
+    cwd / "models" / "student_score_model.pkl",
+    cwd / "backend" / "models" / "student_score_model.pkl",
     backend_dir / "models" / "student_score_model.pkl",
+    backend_dir.parent / "models" / "student_score_model.pkl",
+    BASE_DIR / "ml" / "models" / "student_score_model.pkl",
+    BASE_DIR / "backend" / "models" / "student_score_model.pkl",
     backend_dir / "student_score_model.pkl",
 ]
 
-MODEL_PATH = None
-for candidate in MODEL_CANDIDATES:
-    if candidate and candidate.exists():
-        MODEL_PATH = candidate
-        break
+def load_trained_model():
+    for candidate in MODEL_CANDIDATES:
+        if candidate and candidate.exists() and candidate.is_file():
+            try:
+                model = joblib.load(candidate)
+                print(f"[INFO] ML Model loaded successfully from: {candidate}")
+                return model, candidate
+            except Exception as err:
+                print(f"[ERROR] Error loading ML model from {candidate}: {err}")
+    return None, None
 
 # Global reference for loaded ML model
-ml_model = None
+ml_model, MODEL_PATH = load_trained_model()
 
 
 @asynccontextmanager
@@ -47,23 +58,8 @@ async def lifespan(app: FastAPI):
     Loads the trained Scikit-learn ML model when FastAPI starts up.
     """
     global ml_model, MODEL_PATH
-    
-    # Re-evaluate candidate paths on startup
-    if not MODEL_PATH or not MODEL_PATH.exists():
-        for candidate in MODEL_CANDIDATES:
-            if candidate and candidate.exists():
-                MODEL_PATH = candidate
-                break
-
-    if MODEL_PATH and MODEL_PATH.exists():
-        try:
-            ml_model = joblib.load(MODEL_PATH)
-            print(f"[INFO] ML Model loaded successfully from: {MODEL_PATH}")
-        except Exception as err:
-            print(f"[ERROR] Error loading ML model from {MODEL_PATH}: {err}")
-            ml_model = None
-    else:
-        print(f"[WARNING] Model file not found in candidate locations.")
+    if ml_model is None:
+        ml_model, MODEL_PATH = load_trained_model()
 
     yield
 
@@ -104,6 +100,10 @@ def read_root():
     """
     Root endpoint for health check.
     """
+    global ml_model, MODEL_PATH
+    if ml_model is None:
+        ml_model, MODEL_PATH = load_trained_model()
+
     return HealthCheckResponse(
         status="healthy",
         message="Student Score Predictor API is up and running.",
@@ -122,6 +122,10 @@ def predict(request: PredictionRequest):
     Prediction endpoint.
     Passes validated request data to the trained linear regression model.
     """
+    global ml_model, MODEL_PATH
+    if ml_model is None:
+        ml_model, MODEL_PATH = load_trained_model()
+
     if ml_model is None:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -150,8 +154,8 @@ def predict(request: PredictionRequest):
 
         return PredictionResponse(predicted_score=final_score_prediction)
 
-    except Exception:
+    except Exception as err:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="An error occurred while calculating the prediction. Please check inputs and try again."
+            detail=f"An error occurred while calculating the prediction: {err}"
         )
