@@ -65,17 +65,17 @@ export const DataVisualization: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white border-b border-[#e1e2e4] text-[#191c1e]">
+    <section className="py-16 bg-white dark:bg-gray-900 border-b border-[#e1e2e4] dark:border-gray-800 text-[#191c1e] dark:text-gray-100 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] text-[#0040a2] text-xs font-mono-code uppercase font-semibold">
-            <Activity className="w-3.5 h-3.5 text-[#0052cc]" />
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] dark:bg-blue-950/80 text-[#0040a2] dark:text-blue-300 text-xs font-mono-code uppercase font-semibold">
+            <Activity className="w-3.5 h-3.5 text-[#0052cc] dark:text-blue-400" />
             <span>Feature Mapping & Coefficients</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#191c1e]">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#191c1e] dark:text-white">
             Input Feature Vector Specification
           </h2>
-          <p className="text-xs sm:text-sm text-[#434654] font-normal">
+          <p className="text-xs sm:text-sm text-[#434654] dark:text-gray-400 font-normal">
             Every feature contributes proportionally to the final linear model prediction score.
           </p>
         </div>
@@ -90,32 +90,32 @@ export const DataVisualization: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: idx * 0.08 }}
-                className="p-5 rounded bg-[#f8f9fb] border border-[#e1e2e4] hover:border-[#0052cc] shadow-2xs transition-all flex flex-col justify-between"
+                className="p-5 rounded bg-[#f8f9fb] dark:bg-gray-950 border border-[#e1e2e4] dark:border-gray-800 hover:border-[#0052cc] dark:hover:border-blue-500 shadow-2xs transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <div className="p-2 rounded bg-white border border-[#e1e2e4] text-[#0052cc]">
+                    <div className="p-2 rounded bg-white dark:bg-gray-800 border border-[#e1e2e4] dark:border-gray-700 text-[#0052cc] dark:text-blue-400">
                       <Icon className="w-4 h-4" />
                     </div>
-                    <span className="text-[10px] font-mono-code text-[#737685] bg-white px-2 py-0.5 rounded border border-[#e1e2e4]">
+                    <span className="text-[10px] font-mono-code text-[#737685] dark:text-gray-400 bg-white dark:bg-gray-800 px-2 py-0.5 rounded border border-[#e1e2e4] dark:border-gray-700">
                       {card.range}
                     </span>
                   </div>
 
-                  <h3 className="text-sm font-mono-code font-bold text-[#191c1e] mb-1">
+                  <h3 className="text-sm font-mono-code font-bold text-[#191c1e] dark:text-white mb-1">
                     {card.title}
                   </h3>
-                  <p className="text-xs text-[#434654] mb-3">
+                  <p className="text-xs text-[#434654] dark:text-gray-400 mb-3">
                     {card.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#e1e2e4] flex items-center justify-between font-mono-code">
+                <div className="pt-3 border-t border-[#e1e2e4] dark:border-gray-800 flex items-center justify-between font-mono-code">
                   <div>
-                    <span className="text-[9px] text-[#737685] uppercase block">Sample Value</span>
-                    <span className="text-xs font-bold text-[#191c1e]">{card.demoVal}</span>
+                    <span className="text-[9px] text-[#737685] dark:text-gray-400 uppercase block">Sample Value</span>
+                    <span className="text-xs font-bold text-[#191c1e] dark:text-gray-100">{card.demoVal}</span>
                   </div>
-                  <span className="text-[11px] text-[#16a34a] font-semibold bg-[#dcfce7] border border-[#16a34a]/30 px-2 py-0.5 rounded">
+                  <span className="text-[11px] text-[#16a34a] dark:text-green-400 font-semibold bg-[#dcfce7] dark:bg-green-950/60 border border-[#16a34a]/30 dark:border-green-800 px-2 py-0.5 rounded">
                     {card.weight}
                   </span>
                 </div>

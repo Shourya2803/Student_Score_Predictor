@@ -97,12 +97,12 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({
 
   return (
     <form onSubmit={onSubmit} className="space-y-5">
-      <div className="flex items-center justify-between border-b border-[#e1e2e4] pb-3 mb-2">
-        <h3 className="text-xs font-mono-code uppercase font-semibold text-[#191c1e] flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#0052cc]" />
+      <div className="flex items-center justify-between border-b border-[#e1e2e4] dark:border-gray-800 pb-3 mb-2">
+        <h3 className="text-xs font-mono-code uppercase font-semibold text-[#191c1e] dark:text-gray-100 flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#0052cc] dark:bg-blue-400" />
           Model Input Feature Vector
         </h3>
-        <span className="text-[11px] font-mono-code text-[#737685]">6/6 Enforced</span>
+        <span className="text-[11px] font-mono-code text-[#737685] dark:text-gray-400">6/6 Enforced</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -115,13 +115,13 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({
             <div key={field.id} className="flex flex-col gap-1.5">
               <label
                 htmlFor={field.id}
-                className="flex items-center justify-between text-xs font-mono-code text-[#4e6072]"
+                className="flex items-center justify-between text-xs font-mono-code text-[#4e6072] dark:text-gray-300"
               >
-                <span className="flex items-center gap-1.5 font-semibold text-[#191c1e]">
-                  <Icon className="w-3.5 h-3.5 text-[#0052cc]" />
+                <span className="flex items-center gap-1.5 font-semibold text-[#191c1e] dark:text-gray-100">
+                  <Icon className="w-3.5 h-3.5 text-[#0052cc] dark:text-blue-400" />
                   {field.label}
                 </span>
-                <span className="text-[10px] text-[#737685]">{field.hint}</span>
+                <span className="text-[10px] text-[#737685] dark:text-gray-400">{field.hint}</span>
               </label>
 
               <div className="relative">
@@ -138,16 +138,16 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({
                     onChange(key, isNaN(val) ? 0 : val);
                   }}
                   disabled={loading}
-                  className={`w-full px-3.5 py-2.5 bg-[#f8f9fb] border rounded text-xs font-mono-code text-[#191c1e] placeholder-[#c3c6d6] focus:outline-none focus:bg-white transition-all ${
+                  className={`w-full px-3.5 py-2.5 bg-[#f8f9fb] dark:bg-gray-900 border rounded text-xs font-mono-code text-[#191c1e] dark:text-white placeholder-[#c3c6d6] dark:placeholder-gray-500 focus:outline-none focus:bg-white dark:focus:bg-gray-800 transition-all ${
                     errorMsg
-                      ? "border-[#ba1a1a] focus:ring-2 focus:ring-[#ba1a1a]/20"
-                      : "border-[#e1e2e4] focus:border-[#0052cc] focus:ring-2 focus:ring-[#0052cc]/20"
+                      ? "border-[#ba1a1a] dark:border-red-600 focus:ring-2 focus:ring-[#ba1a1a]/20"
+                      : "border-[#e1e2e4] dark:border-gray-700 focus:border-[#0052cc] dark:focus:border-blue-500 focus:ring-2 focus:ring-[#0052cc]/20"
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
                 />
               </div>
 
               {errorMsg && (
-                <span className="text-[11px] text-[#ba1a1a] font-mono-code font-medium">
+                <span className="text-[11px] text-[#ba1a1a] dark:text-red-400 font-mono-code font-medium">
                   ⚠ {errorMsg}
                 </span>
               )}
@@ -160,7 +160,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 px-6 bg-[#0052cc] hover:bg-[#0040a2] text-white font-mono-code uppercase font-semibold text-xs rounded shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 px-6 bg-[#0052cc] hover:bg-[#0040a2] dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-mono-code uppercase font-semibold text-xs rounded shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>

@@ -153,7 +153,7 @@ export default function Home() {
       if (err instanceof Error) {
         setErrorMessage(err.message);
       } else {
-        setErrorMessage("Prediction service is currently unavailable. Please make sure the FastAPI backend is running on http://localhost:8000.");
+        setErrorMessage("Prediction service is currently unavailable. Please make sure the FastAPI backend is running.");
       }
       setBackendOnline(false);
     } finally {
@@ -175,7 +175,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f9fb] text-[#191c1e] flex flex-col font-sans selection:bg-[#0052cc] selection:text-white">
+    <div className="min-h-screen bg-[#f8f9fb] dark:bg-[#0b0f19] text-[#191c1e] dark:text-gray-100 flex flex-col font-sans transition-colors duration-300 selection:bg-[#0052cc] selection:text-white">
       <Navbar />
 
       <main className="flex-1">
@@ -192,29 +192,29 @@ export default function Home() {
         <ModelSection />
 
         {/* Prediction Form Workbench */}
-        <section id="predictor-workbench" className="py-16 bg-white border-b border-[#e1e2e4] text-[#191c1e]">
+        <section id="predictor-workbench" className="py-16 bg-white dark:bg-gray-900 border-b border-[#e1e2e4] dark:border-gray-800 text-[#191c1e] dark:text-gray-100 transition-colors duration-300">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] text-[#0040a2] text-xs font-mono-code uppercase font-semibold">
-                <Calculator className="w-3.5 h-3.5 text-[#0052cc]" />
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] dark:bg-blue-950/80 text-[#0040a2] dark:text-blue-300 text-xs font-mono-code uppercase font-semibold">
+                <Calculator className="w-3.5 h-3.5 text-[#0052cc] dark:text-blue-400" />
                 <span>Interactive Inference Workbench</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#191c1e]">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#191c1e] dark:text-white">
                 Inference Input Parameters & Real-Time Query
               </h2>
-              <p className="text-xs sm:text-sm text-[#434654] font-normal">
+              <p className="text-xs sm:text-sm text-[#434654] dark:text-gray-400 font-normal">
                 Enter student parameter attributes to evaluate the pre-trained Scikit-Learn linear regression model.
               </p>
             </div>
 
             {/* Backend Offline Notice */}
             {backendOnline === false && (
-              <div className="mb-6 p-4 rounded bg-[#fff8e1] border border-[#ffe082] text-[#896400] text-xs font-mono-code flex items-start gap-3">
-                <AlertCircle className="w-4 h-4 text-[#b78103] shrink-0 mt-0.5" />
+              <div className="mb-6 p-4 rounded bg-[#fff8e1] dark:bg-amber-950/40 border border-[#ffe082] dark:border-amber-800 text-[#896400] dark:text-amber-300 text-xs font-mono-code flex items-start gap-3">
+                <AlertCircle className="w-4 h-4 text-[#b78103] dark:text-amber-400 shrink-0 mt-0.5" />
                 <div className="flex-1">
-                  <p className="font-bold text-[#6b4e00]">FastAPI Backend Offline (Port 8000)</p>
-                  <p className="mt-0.5 text-[#896400]">
-                    Inference service unreachable. Ensure FastAPI server is running via <code className="bg-white px-1.5 py-0.5 rounded border border-[#ffe082]">uvicorn backend.main:app --reload --port 8000</code>.
+                  <p className="font-bold text-[#6b4e00] dark:text-amber-200">FastAPI Backend Offline</p>
+                  <p className="mt-0.5 text-[#896400] dark:text-amber-300">
+                    Inference service unreachable. Ensure FastAPI server is running on Render or locally.
                   </p>
                 </div>
                 <button
@@ -222,7 +222,7 @@ export default function Home() {
                     const isOnline = await checkBackendHealth();
                     setBackendOnline(isOnline);
                   }}
-                  className="px-2.5 py-1 bg-white hover:bg-[#fff3c4] border border-[#ffe082] rounded text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-2.5 py-1 bg-white dark:bg-gray-800 hover:bg-[#fff3c4] dark:hover:bg-gray-700 border border-[#ffe082] dark:border-amber-700 rounded text-xs font-bold flex items-center gap-1 transition-colors cursor-pointer text-gray-800 dark:text-gray-200"
                 >
                   <RefreshCw className="w-3 h-3" />
                   Retry
@@ -231,7 +231,7 @@ export default function Home() {
             )}
 
             {/* Main Form Workbench */}
-            <div className="p-6 sm:p-8 rounded bg-[#f8f9fb] border border-[#e1e2e4] shadow-xs">
+            <div className="p-6 sm:p-8 rounded bg-[#f8f9fb] dark:bg-gray-950 border border-[#e1e2e4] dark:border-gray-800 shadow-xs transition-colors duration-300">
               <PredictionForm
                 metrics={metrics}
                 onChange={handleInputChange}
@@ -242,8 +242,8 @@ export default function Home() {
 
               {/* Error Alert */}
               {errorMessage && (
-                <div className="mt-6 p-4 rounded bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] text-xs font-mono-code flex items-start gap-3">
-                  <AlertCircle className="w-4 h-4 text-[#dc2626] shrink-0 mt-0.5" />
+                <div className="mt-6 p-4 rounded bg-[#fef2f2] dark:bg-red-950/40 border border-[#fecaca] dark:border-red-800 text-[#991b1b] dark:text-red-300 text-xs font-mono-code flex items-start gap-3">
+                  <AlertCircle className="w-4 h-4 text-[#dc2626] dark:text-red-400 shrink-0 mt-0.5" />
                   <div>
                     <p className="font-bold">Inference Error</p>
                     <p className="mt-0.5">{errorMessage}</p>
@@ -261,7 +261,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Prediction History Logs (New Stitch Screen 2cfdc13e) */}
+        {/* Prediction History Logs */}
         <PredictionHistory history={history} onClearHistory={clearHistory} />
 
         {/* API Docs & Model Registry */}

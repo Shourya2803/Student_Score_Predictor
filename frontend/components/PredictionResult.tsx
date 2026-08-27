@@ -41,7 +41,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
     if (val >= 90) {
       return {
         label: "Grade A+ (Excellent)",
-        badgeColor: "text-[#16a34a] bg-[#16a34a]/10 border-[#16a34a]/30",
+        badgeColor: "text-[#16a34a] dark:text-green-400 bg-[#16a34a]/10 border-[#16a34a]/30",
         strokeColor: "#16a34a",
         icon: Trophy,
         advice: "Outstanding academic performance! Consistent study hours and high practice test scores yield high predictions."
@@ -49,7 +49,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
     } else if (val >= 75) {
       return {
         label: "Grade A (Very Good)",
-        badgeColor: "text-[#0052cc] bg-[#0052cc]/10 border-[#0052cc]/30",
+        badgeColor: "text-[#0052cc] dark:text-blue-400 bg-[#0052cc]/10 border-[#0052cc]/30",
         strokeColor: "#0052cc",
         icon: CheckCircle2,
         advice: "Strong performance! Increasing revision time slightly can push you into the top tier."
@@ -57,7 +57,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
     } else if (val >= 60) {
       return {
         label: "Grade B (Good)",
-        badgeColor: "text-[#0c56d0] bg-[#0c56d0]/10 border-[#0c56d0]/30",
+        badgeColor: "text-[#0c56d0] dark:text-blue-300 bg-[#0c56d0]/10 border-[#0c56d0]/30",
         strokeColor: "#0c56d0",
         icon: TrendingUp,
         advice: "Solid result! Focus on completing all assignments and taking additional practice tests."
@@ -65,7 +65,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
     } else if (val >= 40) {
       return {
         label: "Grade C (Needs Improvement)",
-        badgeColor: "text-[#a33500] bg-[#a33500]/10 border-[#a33500]/30",
+        badgeColor: "text-[#a33500] dark:text-amber-400 bg-[#a33500]/10 border-[#a33500]/30",
         strokeColor: "#a33500",
         icon: AlertTriangle,
         advice: "Additional effort needed. Consider increasing daily study hours and attendance frequency."
@@ -73,7 +73,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
     } else {
       return {
         label: "Grade F (Underperforming)",
-        badgeColor: "text-[#ba1a1a] bg-[#ba1a1a]/10 border-[#ba1a1a]/30",
+        badgeColor: "text-[#ba1a1a] dark:text-red-400 bg-[#ba1a1a]/10 border-[#ba1a1a]/30",
         strokeColor: "#ba1a1a",
         icon: AlertTriangle,
         advice: "Immediate intervention recommended. Work with tutors to improve attendance and study routine."
@@ -118,22 +118,22 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
       initial={{ opacity: 0, scale: 0.98, y: 15 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="mt-8 pt-6 border-t border-[#e1e2e4]"
+      className="mt-8 pt-6 border-t border-[#e1e2e4] dark:border-gray-800"
     >
-      <div className="p-6 bg-[#f8f9fb] rounded border border-[#e1e2e4] shadow-xs relative space-y-6">
+      <div className="p-6 bg-[#f8f9fb] dark:bg-gray-950 rounded border border-[#e1e2e4] dark:border-gray-800 shadow-xs relative space-y-6 transition-colors duration-300">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left Column: Numeric Result & Info */}
           <div className="space-y-3 text-center md:text-left flex-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] text-[#0040a2] text-[11px] font-mono-code uppercase font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-[#0052cc]" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#dae2ff] dark:bg-blue-950/80 text-[#0040a2] dark:text-blue-300 text-[11px] font-mono-code uppercase font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-[#0052cc] dark:text-blue-400" />
               <span>Prediction Result</span>
             </div>
 
             <div className="flex items-baseline justify-center md:justify-start gap-2">
-              <span className="text-4xl sm:text-5xl font-mono-code font-bold text-[#191c1e] tracking-tight">
+              <span className="text-4xl sm:text-5xl font-mono-code font-bold text-[#191c1e] dark:text-white tracking-tight">
                 {displayScore.toFixed(2)}
               </span>
-              <span className="text-xl font-mono-code text-[#737685]">/ 100</span>
+              <span className="text-xl font-mono-code text-[#737685] dark:text-gray-400">/ 100</span>
             </div>
 
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded border text-xs font-mono-code font-semibold uppercase">
@@ -143,23 +143,23 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
               </span>
             </div>
 
-            <p className="text-xs text-[#434654] max-w-md">
+            <p className="text-xs text-[#434654] dark:text-gray-400 max-w-md">
               {interpretation.advice}
             </p>
 
-            {/* Key-Value Metadata Specs Grid (Stitch Inference Card format) */}
+            {/* Key-Value Metadata Specs Grid */}
             <div className="grid grid-cols-3 gap-2 pt-2 text-[11px] font-mono-code">
-              <div className="p-2 bg-white rounded border border-[#e1e2e4]">
-                <div className="text-[#737685] uppercase text-[9px]">Confidence Range</div>
-                <div className="font-semibold text-[#191c1e] mt-0.5">[{lowerBound}, {upperBound}]</div>
+              <div className="p-2 bg-white dark:bg-gray-900 rounded border border-[#e1e2e4] dark:border-gray-800">
+                <div className="text-[#737685] dark:text-gray-400 uppercase text-[9px]">Confidence Range</div>
+                <div className="font-semibold text-[#191c1e] dark:text-gray-200 mt-0.5">[{lowerBound}, {upperBound}]</div>
               </div>
-              <div className="p-2 bg-white rounded border border-[#e1e2e4]">
-                <div className="text-[#737685] uppercase text-[9px]">Latency</div>
-                <div className="font-semibold text-[#0052cc] mt-0.5">14.2 ms</div>
+              <div className="p-2 bg-white dark:bg-gray-900 rounded border border-[#e1e2e4] dark:border-gray-800">
+                <div className="text-[#737685] dark:text-gray-400 uppercase text-[9px]">Latency</div>
+                <div className="font-semibold text-[#0052cc] dark:text-blue-400 mt-0.5">14.2 ms</div>
               </div>
-              <div className="p-2 bg-white rounded border border-[#e1e2e4]">
-                <div className="text-[#737685] uppercase text-[9px]">Model Version</div>
-                <div className="font-semibold text-[#16a34a] mt-0.5">v1.4.2</div>
+              <div className="p-2 bg-white dark:bg-gray-900 rounded border border-[#e1e2e4] dark:border-gray-800">
+                <div className="text-[#737685] dark:text-gray-400 uppercase text-[9px]">Model Version</div>
+                <div className="font-semibold text-[#16a34a] dark:text-green-400 mt-0.5">v1.4.2</div>
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
                 cx="80"
                 cy="80"
                 r={radius}
-                className="stroke-[#e1e2e4]"
+                className="stroke-[#e1e2e4] dark:stroke-gray-800"
                 strokeWidth="10"
                 fill="transparent"
               />
@@ -192,36 +192,36 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
             </svg>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="text-xl font-mono-code font-bold text-[#191c1e]">
+              <span className="text-xl font-mono-code font-bold text-[#191c1e] dark:text-white">
                 {Math.round(clampedScore)}%
               </span>
-              <span className="text-[9px] font-mono-code text-[#737685] uppercase tracking-wider">
+              <span className="text-[9px] font-mono-code text-[#737685] dark:text-gray-400 uppercase tracking-wider">
                 Predicted %
               </span>
             </div>
           </div>
         </div>
 
-        {/* Stitch Screen 5529c123 Raw JSON Response Panel */}
-        <div className="border-t border-[#e1e2e4] pt-4">
+        {/* Raw JSON Response Panel */}
+        <div className="border-t border-[#e1e2e4] dark:border-gray-800 pt-4">
           <div className="flex items-center justify-between mb-2">
             <button
               onClick={() => setShowJson(!showJson)}
-              className="flex items-center gap-1.5 text-xs font-mono-code uppercase font-semibold text-[#4e6072] hover:text-[#0052cc] transition-colors cursor-pointer"
+              className="flex items-center gap-1.5 text-xs font-mono-code uppercase font-semibold text-[#4e6072] dark:text-gray-300 hover:text-[#0052cc] dark:hover:text-blue-400 transition-colors cursor-pointer"
             >
-              <Code className="w-3.5 h-3.5 text-[#0052cc]" />
+              <Code className="w-3.5 h-3.5 text-[#0052cc] dark:text-blue-400" />
               <span>Raw JSON Response</span>
-              <span className="text-[10px] text-[#737685]">({showJson ? "Hide" : "Show"})</span>
+              <span className="text-[10px] text-[#737685] dark:text-gray-400">({showJson ? "Hide" : "Show"})</span>
             </button>
 
             <button
               onClick={handleCopyJson}
-              className="flex items-center gap-1 text-[11px] font-mono-code text-[#0052cc] hover:underline cursor-pointer"
+              className="flex items-center gap-1 text-[11px] font-mono-code text-[#0052cc] dark:text-blue-400 hover:underline cursor-pointer"
             >
               {copied ? (
                 <>
-                  <Check className="w-3 h-3 text-[#16a34a]" />
-                  <span className="text-[#16a34a]">Copied!</span>
+                  <Check className="w-3 h-3 text-[#16a34a] dark:text-green-400" />
+                  <span className="text-[#16a34a] dark:text-green-400">Copied!</span>
                 </>
               ) : (
                 <>
@@ -233,7 +233,7 @@ export const PredictionResult: React.FC<PredictionResultProps> = ({ score, metri
           </div>
 
           {showJson && (
-            <pre className="p-3 bg-[#191c1e] text-[#f8f9fb] rounded font-mono-code text-xs overflow-x-auto border border-[#434654]">
+            <pre className="p-3 bg-[#191c1e] dark:bg-gray-900 text-[#f8f9fb] dark:text-gray-100 rounded font-mono-code text-xs overflow-x-auto border border-[#434654] dark:border-gray-800">
               <code>{JSON.stringify(jsonResponse, null, 2)}</code>
             </pre>
           )}

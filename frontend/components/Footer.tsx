@@ -17,25 +17,25 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="w-full bg-[#f8f9fb] border-t border-[#e1e2e4] py-8 text-[#191c1e]">
+    <footer className="w-full bg-[#f8f9fb] dark:bg-[#080c14] border-t border-[#e1e2e4] dark:border-gray-800 py-8 text-[#191c1e] dark:text-gray-100 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 font-mono-code">
         {/* Branding */}
         <div className="flex items-center gap-2">
-          <div className="p-1 rounded bg-[#0052cc] text-white">
+          <div className="p-1 rounded bg-[#0052cc] dark:bg-blue-600 text-white">
             <Cpu className="w-4 h-4" />
           </div>
-          <span className="text-xs font-bold text-[#191c1e] tracking-tight">
+          <span className="text-xs font-bold text-[#191c1e] dark:text-white tracking-tight">
             Predictive ML Infrastructure &bull; v1.0.4
           </span>
         </div>
 
         {/* Technical Nav Links */}
-        <nav className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#4e6072]">
+        <nav className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#4e6072] dark:text-gray-400">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => scrollToSection(link.id)}
-              className="hover:text-[#0052cc] transition-colors cursor-pointer"
+              className="hover:text-[#0052cc] dark:hover:text-blue-400 transition-colors cursor-pointer"
             >
               {link.label}
             </button>
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
         </nav>
 
         {/* Copyright */}
-        <div className="text-[11px] text-[#737685]">
+        <div className="text-[11px] text-[#737685] dark:text-gray-400">
           FastAPI Backend &bull; Scikit-Learn Engine &bull; Stitch Precision Standard
         </div>
       </div>
