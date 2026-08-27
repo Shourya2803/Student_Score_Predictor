@@ -16,6 +16,20 @@ export const Navbar: React.FC = () => {
     setBackendStatus(isReady ? "online" : "offline");
   };
 
+  const applyThemeToDOM = (selectedTheme: "light" | "dark") => {
+    const root = document.documentElement;
+    const body = document.body;
+    if (selectedTheme === "dark") {
+      root.classList.add("dark");
+      body?.classList.add("dark");
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      body?.classList.remove("dark");
+      root.removeAttribute("data-theme");
+    }
+  };
+
   useEffect(() => {
     verifyHealth();
     
@@ -25,11 +39,7 @@ export const Navbar: React.FC = () => {
     
     const initialTheme = savedTheme || (systemPrefersDark ? "dark" : "light");
     setTheme(initialTheme);
-    if (initialTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    applyThemeToDOM(initialTheme);
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -43,11 +53,7 @@ export const Navbar: React.FC = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    applyThemeToDOM(newTheme);
   };
 
   const scrollToSection = (id: string) => {
