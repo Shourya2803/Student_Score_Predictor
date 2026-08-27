@@ -3,8 +3,9 @@ services:
   - type: web
     name: student-score-backend
     env: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: ALLOWED_ORIGINS
         value: "*"
@@ -13,8 +14,9 @@ services:
   - type: web
     name: student-score-frontend
     env: node
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm start
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: NEXT_PUBLIC_API_URL
         fromService:
